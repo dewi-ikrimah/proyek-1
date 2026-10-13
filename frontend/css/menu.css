@@ -1,0 +1,161 @@
+/* ==========================================================
+   MENU PAGE — hanya style khusus halaman menu.
+   Navbar & footer memakai css/style.css milik project.
+   ========================================================== */
+
+.menu-page {
+  --m-forest: #1e5a2a;
+  --m-yellow: #f6e27a;
+  --m-burst:  #f7d94c;
+  --m-muted:  #6f8467;
+
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem 2.5rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* ---------- layout 2 kolom ---------- */
+.menu-layout {
+  display: grid;
+  grid-template-columns: 33% 1fr;
+  gap: .75rem;
+}
+
+/* ---------- kategori ---------- */
+.kategori-list {
+  list-style: none;
+  margin: 0;
+  padding: 3.2rem 0 0;
+}
+.kategori-list li {
+  font-size: .5rem;
+  letter-spacing: .12em;
+  color: var(--m-muted);
+  margin-bottom: 1.05rem;
+  cursor: pointer;
+  transition: color .2s;
+}
+.kategori-list li:hover { color: var(--m-forest); }
+.kategori-list li.aktif {
+  display: inline-block;
+  background: #e8efe4;
+  color: #1c1c1c;
+  font-weight: 600;
+  padding: .15rem .3rem;
+  margin-left: -.15rem;
+}
+.kategori-list li:focus-visible { outline: 2px solid var(--m-forest); outline-offset: 2px; }
+
+/* ---------- grid produk ---------- */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .6rem .75rem;
+}
+.menu-item { padding-top: 1.5rem; }   /* ruang untuk gelas yang menonjol */
+
+.menu-card {
+  position: relative;
+  height: 6.8rem;
+  background: var(--m-forest);
+  border-radius: 12px 34px 12px 34px;
+  box-shadow: 0 6px 14px rgba(0,0,0,.12);
+}
+.menu-card .cup {
+  position: absolute;
+  left: 50%; top: -1.3rem;
+  transform: translateX(-50%);
+  height: 5.6rem; width: auto;
+  object-fit: contain;
+  filter: drop-shadow(5px 8px 6px rgba(0,0,0,.35));
+}
+.menu-card .meta {
+  position: absolute;
+  left: 0; right: 0; bottom: .55rem;
+  display: flex; justify-content: center; align-items: center;
+  gap: .6rem; padding: 0 .4rem;
+}
+.menu-card .nama {
+  font-size: .5rem; letter-spacing: .1em;
+  color: #eaf3e6; font-weight: 400;
+}
+.menu-card .harga {
+  font-size: .5rem; font-weight: 600; line-height: 1.2;
+  background: var(--m-yellow); color: #2a2a2a;
+  padding: .05rem .25rem;
+}
+
+/* ---------- badge starburst ---------- */
+.badge-burst {
+  position: absolute; z-index: 2;
+  top: -2.2rem; left: -1.2rem;
+  width: 3.6rem; height: 3.6rem;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  background: var(--m-burst); color: #1c1c1c;
+  font-size: .42rem; font-weight: 800; line-height: 1.1; letter-spacing: .04em;
+  clip-path: polygon(
+    100% 50%, 89.6% 60.6%, 93.3% 75%, 79% 79%, 75% 93.3%, 60.6% 89.6%,
+    50% 100%, 39.4% 89.6%, 25% 93.3%, 21% 79%, 6.7% 75%, 10.4% 60.6%,
+    0% 50%, 10.4% 39.4%, 6.7% 25%, 21% 21%, 25% 6.7%, 39.4% 10.4%,
+    50% 0%, 60.6% 10.4%, 75% 6.7%, 79% 21%, 93.3% 25%, 89.6% 39.4%);
+}
+
+/* ---------- pagination dots ---------- */
+.menu-pager {
+  display: flex; justify-content: center; gap: .4rem;
+  margin-top: 1.4rem;
+}
+.menu-pager button {
+  width: .5rem; height: .5rem; padding: 0; border: 0; border-radius: 50%;
+  background: #dbe5d5; cursor: pointer; transition: background .2s;
+}
+.menu-pager button.aktif { background: var(--m-forest); }
+.menu-pager button:focus-visible { outline: 2px solid var(--m-forest); outline-offset: 2px; }
+
+/* ---------- status kosong / loading ---------- */
+.menu-status {
+  grid-column: 1 / -1;
+  padding: 2rem 0;
+  text-align: center;
+  font-size: .6rem;
+  color: var(--m-muted);
+}
+
+/* animasi ganti halaman (hanya saat user klik) */
+.menu-grid.swap { animation: menuSwap .3s ease; }
+@keyframes menuSwap {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ==========================================================
+   TABLET / DESKTOP
+   ========================================================== */
+@media (min-width: 768px) {
+  .menu-page { padding: 3rem 3rem 4rem; }
+  .menu-layout { grid-template-columns: 25% 1fr; gap: 3rem; }
+
+  .kategori-list { padding-top: 4rem; }
+  .kategori-list li { font-size: .95rem; margin-bottom: 1.6rem; }
+
+  .menu-grid { gap: 1rem 2rem; }
+  .menu-item { padding-top: 2.2rem; }
+  .menu-card { height: 13rem; border-radius: 18px 60px 18px 60px; }
+  .menu-card .cup { height: 11rem; top: -2.2rem; }
+  .menu-card .nama, .menu-card .harga { font-size: .9rem; }
+  .menu-card .meta { bottom: 1rem; gap: 1rem; }
+  .badge-burst { width: 6.2rem; height: 6.2rem; font-size: .75rem; top: -3.4rem; left: -1.8rem; }
+
+  .menu-pager button { width: .8rem; height: .8rem; }
+  .menu-status { font-size: 1rem; }
+}
+
+@media (min-width: 992px) {
+  .menu-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-grid.swap { animation: none; }
+}
